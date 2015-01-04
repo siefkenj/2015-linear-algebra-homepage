@@ -120,6 +120,7 @@ a:hover {
 	padding: 0 0 38px;
 	clear: both;
 	float: left;
+	width: 100%;
 }
 
 #nav a {
@@ -236,4 +237,17 @@ book {
   height: 0;
   visibility: hidden;
   font-size: 0;
+}
+
+
+/* misc */
+
+a[href=""] {
+	color: gray;
+}
+
+a[href=""]:after {
+	content: "[Not Posted]";
+	font-size: smaller;
+	color: #D24B21;
 }
