@@ -1,0 +1,86 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} %({\small \it \today})
+	}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 211 (A01)}{Written Homework 1}{Due Friday, January 16}{}{}{}
+
+	Let $\vec u = \mat{1\\1}$ and $\vec v=\mat{-1\\0}$.
+	\begin{enumerate}
+		\item Graph the vectors $\vec u$, $\vec v$, and $2\vec u+\vec v$.
+
+		\item \begin{enumerate}
+				\item Draw the set $A=\{\vec x\in\R^2:\vec x=t\vec u\text{ for some }t\in\R\}$.
+				\item Draw the set $B=\{\vec x\in\R^2:\vec x=t\vec u-(2t+1)\vec v\text{ for some }t\in\R\}$.
+			\end{enumerate}
+		\item \begin{enumerate}
+				\item Find values of $x,y$ that satisfy the following relationships:
+					\begin{align*}
+						x+y&=7\\
+						2x-3y&=13.
+					\end{align*}
+				\item Find values of $x,y,z$ that satisfy the following relationships (your answer
+					may involve ugly fractions):
+					\begin{align*}
+						x+2y+8z&=1\\
+						4x+5y+8z&=2.
+					\end{align*}
+			\end{enumerate}
+		\item Let $\vec w=\mat{5\\-12}$.  Find values of $a$ and $b$ so that
+			\[
+				\vec w=a\vec u+b\vec v.
+			\]
+			That is, write $\vec w$ as a linear combination of $\vec u$ and $\vec v$.
+
+		\item Let 
+			\[
+				S=\Span\left\{\mat{1\\1\\1},\mat{1\\1\\0},\mat{0\\0\\1}\right\}.
+			\]
+			Is $S$ a point, line, plane, or all of $\R^3$?  Explain.
+
+	\end{enumerate}
+\end{document}
