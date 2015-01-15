@@ -1,0 +1,93 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+\expandafter\def\expandafter\quote\expandafter{\quote\sf\color{DarkGreen}}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} %({\small \it \today})
+	}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 211 (A01)}{Written Homework 2}{Due Friday, January 23}{}{}{}
+
+	\begin{enumerate}
+		\item Let $\vec u = \mat{3\\4\\1}$, $\vec v=\mat{4\\-4\\-4}$, and $\vec w=\mat{14\\0\\d}$.
+			\begin{enumerate}
+				\item For what value(s) of $d$ is $\Span\{\vec u,\vec v,\vec w\}$ a plane?
+				\item Is there a value of $d$ so $\Span\{\vec u,\vec v,\vec w\}$ a line?  Explain.
+			\end{enumerate}
+		\item Let $G\subseteq \R^2$ be the graph of the line given by the equation $y=3x+2$.  Find vectors $\vec d$
+			and $\vec p$ so that
+			\[
+				G=\{\vec x\in\R^2:\vec x=t\vec d+\vec p\text{ for some }t\in\R\}.
+			\]
+		\item Let $\vec v=\mat{1\\2}$, 
+			\begin{align*}
+				X&=\{\vec x\in\R^2:\vec x\cdot\vec v=0\}\\
+				Y&=\{\vec x\in\R^2:\vec x\cdot \vec v=-3\}.
+			\end{align*}
+			\begin{enumerate}
+				\item Draw $X$ and $Y$.  What do you notice?  Are either of them subspaces?
+				\item Find a vector $\vec w$ so that
+					\[
+						Y=\{\vec x+\vec w:\vec x\in X\}.
+					\]
+			\end{enumerate}
+		\item Let $\vec x=\mat{1\\1}$ and $\vec y=\mat{1\\-1}$.  Prove that $\{\vec x,\vec y\}$ is a 
+			basis for $\R^2$.
+
+		\item Let 
+			\begin{align*}
+				U&=\Span\left\{\mat{1\\2\\3},\mat{3\\2\\1},\mat{4\\4\\4}\right\},\\
+				V&=\left\{\vec x\in\R^3:\vec x\cdot\mat{1\\1\\1}=0\right\},\\
+				W&=U\cup V.
+			\end{align*}
+			For each subset $U$, $V$, $W$ of $\R^3$, show whether it is a subspace or not.  If it is a subspace,
+			classify it as a point, line, plane, or all of $\R^3$.  Further, if it is a subspace, give a basis
+			for it.
+
+	\end{enumerate}
+\end{document}
