@@ -1,0 +1,176 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+\expandafter\def\expandafter\quote\expandafter{\quote\sf\color{DarkGreen}}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} %({\small \it \today})
+	}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 211 (A01)}{Typed Homework 1}{Due Friday, January 30}{}{}{}
+
+
+	\begin{enumerate}
+		\item Let $\vec u=\mat{1\\2\\3}$, $\vec v=\mat{4\\5\\6}$, and $\vec w=\mat{7\\8\\9}$. Explain whether
+			the set $A=\{\vec u,\vec v,\vec w\}$ is a basis for $\R^3$.  
+			Make sure to include all relevant definitions.
+
+			\begin{quote}
+				Recall a \emph{basis} for a subspace $V\subset \R^3$ is a linearly independent 
+				set of vectors $B$ such that $\Span\, B=V$.  Let
+				\[
+					\vec u=\mat{1\\2\\3},\qquad 
+					\vec v=\mat{4\\5\\6},\qquad \text{and}\qquad \vec w=\mat{7\\8\\9}.
+				\]
+				We will consider the question of whether $A=\{\vec u,\vec v,\vec w\}$ is a basis
+				for $\R^3$.
+
+				First, we will check to see if $A$ is a linearly independent set.  By definition,
+				$A$ is \emph{linearly independent} if the only way to write
+				$\vec 0$ as a linear combinations of vectors in $A$ is the trivial linear combination
+				(the linear combination where all the coefficients are $0$).
+				That is, we would like to know if
+				\[
+					\mat{0\\0\\0}=c_1\mat{1\\2\\3}+c_2\mat{4\\5\\6}+c_3\mat{7\\8\\9}
+				\]
+				has a solution other than $c_1=c_2=c_3=0$.  Rewriting this, we see
+				\begin{align*}
+					0&=c_1+4c_2+7c_3\\
+					0&=2c_1+5c_2+8c_3\\
+					0&=3c_1+6c_2+9c_3.
+				\end{align*}
+				Solving this system, we deduce that any $c_i$'s satisfying
+				\[
+					c_2=-2c_3=-2c_1
+				\]
+				give a solution.  Choosing $c_1=1$, we see that $(c_1,c_2,c_3)=(1,-2,1)$ is a solution.
+				That is,
+				\[
+					\vec 0=\vec u-2\vec v+\vec w.
+				\]
+				Since $\vec 0$ could be written as a non-trivial linear combination 
+				of vectors in $A$, $A$ is a linearly dependent
+				set and therefore is not a basis for $\R^3$ (or any subspace).
+			\end{quote}
+
+		\item Fix $\vec u,\vec v\in \R^n$.  Show that $\Span(\Span\{\vec u,\vec v\})=\Span\{\vec u,\vec v\}$.
+			Make sure to include all relevant definitions.
+			\begin{quote}
+				The \emph{span} of a set of vectors $X$ is the set of all linear combinations of 
+				vectors in $X$.  We will show that for any two vectors $\vec u,\vec v\in \R^n$, 
+				$\Span(\Span\{\vec u,\vec v\})=\Span\{\vec u,\vec v\}$.
+
+				Fix $\vec u,\vec v\in \R^n$.  Let $S_1=\Span\{\vec u,\vec v\}$. By definition,
+				\[
+					S_1=\{\vec x\in\R^n:\vec x=\alpha\vec u+\beta\vec v\text{
+					for some }\alpha,\beta\in \R\}.
+				\]
+				Let $\vec w\in \Span \,S_1$.  Again, by definition,
+				\[
+					\vec w=\sum_{i=1}^n \gamma_i\vec s_i
+				\]
+				for some $s_i\in S_1$ and $\gamma_i\in \R$.  Expanding based on the definition
+				of $S_1$, we see
+				\[
+					\vec w =\sum_{i=1}^n \gamma_i (\alpha_i\vec u+\beta_i\vec v)=
+					\left(\sum_{i=1}^n \gamma_i \alpha_i\right)\vec u+
+					\left(\sum_{i=1}^n \gamma_i \beta_i\right)\vec v
+				\]
+				for some $\alpha_i,\beta_i\in \R$. However, the right hand sides expresses
+				$\vec w$ as a linear combination of $\vec u$ and $\vec v$.  Thus, $\vec w\in S_1$.
+				This shows $\Span\, S_1\subseteq S_1$.  Since $S_1 \subseteq \Span\,S_1$ is clear,
+				we conclude $S_1=\Span\,S_1$.
+			\end{quote}
+		
+		\item The worksheets define $\Proj_{\vec v}\vec u$ as the vector in the direction $\vec v$ such that
+			$\vec u-\Proj_{\vec v}\vec u$ is orthogonal to $\vec v$.  Call this definition (a).  Your textbook
+			defined $\Proj_{\vec v}\vec u$ as the vector $\frac{\vec u\cdot \vec v}{\vec v\cdot\vec v}\vec v$.
+			Call this definition (b).  Show that definitions (a) and (b) are equivalent by showing 
+			that that the vector arising from definition (b) must be the same as the vector
+			arising from definition (a).
+			In your answer, elaborate on definition (a) by including
+			the definition of \emph{vector in the direction of $\vec v$} and \emph{orthogonal}.
+			\begin{quote}
+				Recall that $\vec u$ is \emph{in the same direction} as $\vec v\neq \vec 0$ if $\vec u=t\vec v$
+				for some scalar $t$.  Further, $\vec u$ is \emph{orthogonal}
+				to $\vec v$ if $\vec u\cdot \vec v=0$.
+
+				Define
+				\[
+					\Proj_{1,\vec v}\vec u
+				\]
+				to be the vector in the direction $\vec v\neq\vec 0$ such that $\vec u-\Proj_{1,\vec v}\vec u$
+				is orthogonal to $\vec v$.
+
+				Define 
+				\[
+					\Proj_{2,\vec v}\vec u = \tfrac{\vec u\cdot \vec v}{\vec v\cdot \vec v}\vec v,
+				\]
+				provided $\vec v\neq \vec 0$.
+				
+				We aim to show that $\Proj_{2,\vec v}\vec u=\Proj_{1,\vec v}\vec u$.  Computing,
+				\[
+					\vec v\cdot(\vec u-\Proj_{2,\vec v}\vec u)=
+					\vec v\cdot\left(\vec u-\tfrac{\vec u\cdot \vec v}{\vec v\cdot \vec v}\vec v\right)
+					=\vec v\cdot\vec u - \tfrac{\vec u\cdot \vec v}{\vec v\cdot \vec v}(\vec v\cdot\vec v)
+					=0,
+				\]
+				and so $\vec u-\Proj_{2,\vec v}\vec u$ is orthogonal to $\vec v$.
+				Since $\tfrac{\vec u\cdot \vec v}{\vec v\cdot \vec v}$ is a scalar,
+				$\Proj_{2,\vec v}\vec u=\tfrac{\vec u\cdot \vec v}{\vec v\cdot \vec v}\vec v$
+				is a vector in the direction of $\vec v$.  Therefore, $\Proj_{2,\vec v}\vec u$
+				satisfies the properties of $\Proj_{1,\vec v}\vec u$.  Since $\Proj_{1,\vec v}\vec u$
+				is unique provided $\vec v\neq 0$, we conclude
+				\[
+					\Proj_{1,\vec v}\vec u = \Proj_{2,\vec v}\vec u.
+				\]
+			\end{quote}
+
+
+	\end{enumerate}
+\end{document}
