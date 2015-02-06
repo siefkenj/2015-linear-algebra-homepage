@@ -1,0 +1,87 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+\expandafter\def\expandafter\quote\expandafter{\quote\sf\color{DarkGreen}}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} %({\small \it \today})
+	}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 211 (A01)}{Typed Homework 2}{Due Friday, February 20}{}{}{}
+
+	\begin{enumerate}
+		\item We know a system of linear equations can have $0,1$, or infinitely many solutions.
+			\begin{enumerate}
+				\item Explain why a system of linear equations cannot have exactly 2 solutions.
+				\item For a homogeneous system of linear equations, what are the possibilities
+					for the number of solutions?  Explain, and make sure to define 
+					\emph{homogeneous system}.
+			\end{enumerate}
+
+		\item Suppose $\mathcal M$ is a homogeneous system of 4 linear equations and 3 variables.
+			Let $M$ be the non-augmented matrix of coefficients.
+			\begin{enumerate}
+				\item If $\Rank(M)=3$, how many solutions does the system $\mathcal M$ have?
+					(You do not need to define \emph{reduced row echelon form}, but include
+					all other relevant definitions.)
+				\item If $\Rank(M)=2$, how many solutions does the system $\mathcal M$ have?
+				\item Could $\Rank(M)=4$? Explain.
+			\end{enumerate}
+		
+		\item Consider the equation $\mathcal E$ given by
+			\[
+				x_1-x_2+x_3-x_4=0
+			\]
+			and let $V=\left\{\mat{x_1\\x_2\\x_3\\x_4}\in \R^4:\mat{x_1\\x_2\\x_3\\x_4}\text{ is a solution to }\mathcal E\right\}$.
+			Find vectors $\vec v_1,\ldots,\vec v_n$ such that $V=\Span\{\vec v_1,\ldots,\vec v_n\}$.  Explain your
+			process.
+
+
+
+	\end{enumerate}
+\end{document}
