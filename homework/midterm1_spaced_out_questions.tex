@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=10.0in       %
+\headsep=0.25in         %
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+
+\begin{document}
+	
+	{\huge \bf Midterm 1} 
+	
+	\vspace{2em}
+	{\huge MATH 211 (A01), Spring 2015 (Siefken)}
+	
+	\vspace{2em}
+ 	{
+	\hfill \bf Date: \underline{\hspace{6em}}
+	\vspace{.5em}
+
+	\hfill Name: \underline{\hspace{16em}}
+	\vspace{.5em}
+
+	\hfill ID Number: \underline{\hspace{16em}}
+	
+	}
+
+	\vspace{2in}
+	This is a 50 minute test. It has 6 pages including this cover page.
+	\begin{center}
+	\begin{tabular}{|l|c|r|}
+	\hline
+	Q1 & $\phantom{abcd}$ & /10\\
+	\hline
+	Q2 & & /10\\
+	\hline
+	Q3 & & /10\\
+	\hline
+	Q4 & & /10\\
+	\hline
+	Q5 & & /10\\
+	\hline
+	\hline
+	Total & & /50\\
+	\hline
+	\end{tabular}
+	\end{center}
+	\clearpage
+
+\begin{enumerate}
+	\item[1 (10pts)] Complete each of the following sentences with a mathematically precise definition.
+	\begin{enumerate}
+		\item[(a) (2pts)] A non-empty subset $V\subseteq \R^n$ is a {\bf subspace} if
+		\vspace{1.5in}
+		\item[(b) (2pts)] The set of vectors $B=\{\vec v_1,\vec v_2,\vec v_3,\vec v_4\}$ is {\bf linearly independent} if
+		\vspace{1.5in}
+		\item[(c) (2pts)] The set of vectors $B=\{\vec v_1,\vec v_2,\vec v_3,\vec v_4\}$ is a {\bf basis for the subspace $V$} if
+		\vspace{1.5in}
+		\item[(d) (2pts)] The vector $\vec a$ is a {\bf unit vector} if
+		\vspace{1.5in}
+		\item[(e) (2pts)] The vector $\vec a$ is {\bf orthogonal} to the vector $\vec b$ if
+		\vspace{1in}
+		
+	
+		%\item[(c) (6pts)] $\mathbf u$ and $\mathbf v$ are unit vectors and $\mathbf u\cdot \mathbf v = .765$.
+		%Are $\mathbf u$ and $\mathbf v$ linearly indepenendent or linearly dependent.  {\bf Explain your answer.}
+		%\item[(c) (6pts)] In 3d graphics, a triangle is defined by 3 points and a normal vector.  In order to save computational
+		%time, a triangle is only displayed if the normal vector is pointing towards the viewer (and the triangle is in
+		%front of the viewer).
+		%
+		%If you are positioned at the origin looking in the $[1\ 2\ 3]$ direction, should a triangle with
+		%center $[30\ 60\ 20]$ and normal vector $[-2\ 2\ -1]$ be displayed?
+		\vspace{5in}
+	\end{enumerate}
+	\clearpage
+
+	\item[2 (10pts)] Let
+		\[
+			\vec a = \mat{1\\2\\3}\qquad \vec b=\mat{-1\\1\\1}\qquad \vec c=\mat{-3\\0\\-1}.
+		\]
+	\begin{enumerate}
+		\item[(a) (3pts)] Compute $\vec a\cdot(\vec b-\vec c)$.
+		\vspace{1.5in}
+		\item[(b) (2pts)] Compute $-\vec a+2\vec b$.
+		\vspace{1.5in}
+		\item[(c) (5pts)] Is the set of vectors $X=\{\vec a,\vec b,\vec c\}$ linearly independent or linearly dependent?  Explain your
+		answer.
+		\vspace{1in}
+		
+	
+	\end{enumerate}
+	\clearpage
+	
+	\item[3 (10pts)] $\phantom{xx}$
+	\begin{enumerate}
+		\item[(a) (7pts)]
+		Use an augmented matrix to solve the following system of equations
+		\[\begin{array}{rrrrrrc}
+				&&   y &+&  z &   = & 1 \\
+				x &   +&2y&+&  z &  = & 1 \\
+				2x &  +& 4y&+&3 z  & = &  4 
+		\end{array}.\]
+
+		\vspace{6in}
+
+		\item[(b) (3pts)] Let $\vec a=\mat{0\\1\\2}$, $\vec b=\mat{1\\2\\4}$, $\vec c=\mat{1\\1\\3}$, and $\vec v=\mat{1\\1\\4}$.
+			Express $\vec v$ as a linear combination of $\vec a$, $\vec b$, and $\vec c$. Hint, these vectors 
+			closely relate to the system of equations in part (a).
+	\end{enumerate}
+	\clearpage
+
+	\item[4 (10pts)] Below you are given the matrix $A$ and its reduced row echelon form.
+		\[
+			A=\mat{
+				1 &  2 & -1 & -1 &  4\\
+				2 &  4 &  1 &  0 &  4\\
+				1 &  2 &  1 & -1 &  4
+				   }\qquad
+				\mathrm{rref}(A)=\mat{
+				 1 &  2 &  0 &  0 &  2\\
+				 0 &  0 &  1 &  0 &  0\\
+				0 &  0 &  0 &  1 & -2}
+		\]
+		\item[(a) (2pts)]
+			What is the rank of $A$?
+
+		\vspace{1in}
+
+	\item[(b) (2pts)] Write down the \emph{homogeneous system} of linear equations corresponding
+			to $A$.
+		\vspace{1in}
+
+	\item[(c) (6pts)] Write down the \emph{general solution to} the homogeneous system of linear equations corresponding
+			to $A$.
+
+
+	\clearpage
+
+	\item[5 (10pts)] For each of the following subsets of $\R^2$, either prove that the subset is a subspace
+		or provide an example that shows it is not a subspace.
+	\begin{enumerate}
+		\item[(a) (5pts)] $U=\{\vec x\in \R^2: \vec x\cdot \vec e_1+\vec x\cdot \vec e_2 = 1\}$.
+		\vspace{4in}
+		%\item[(b) (5pts)] $V=\{\vec x \in \R^2: \vec x = \Proj_{\vec d}\vec y\text{ for some }\vec y\in\R^2\}$ where $\vec d=\mat{1\\2}$.
+		\item[(b) (5pts)] $V=\{\vec x \in \R^2: \vec x\cdot \vec e_1+\vec x\cdot \vec e_2=0\}$.
+	\end{enumerate}
+	\clearpage
+
+
+\end{enumerate}
+\end{document}
+
