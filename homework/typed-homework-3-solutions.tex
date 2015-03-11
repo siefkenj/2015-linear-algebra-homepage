@@ -1,0 +1,224 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+\expandafter\def\expandafter\quote\expandafter{\quote\sf\color{DarkGreen}}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} %({\small \it \today})
+	}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Nullity}{\mathrm{nullity}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\Rref}{\mathrm{rref}}
+\newcommand{\Range}{\mathrm{range}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 211 (A01)}{Typed Homework 3}{Due Friday, March 6}{}{}{}
+
+	\begin{enumerate}
+		\item Let $T:\R^n\to\R^m$ be a linear transformation.
+		\begin{enumerate}
+			\item Show that the null space of $T$ is a subspace of $\R^n$.
+				\begin{quote}
+					Let $T:\R^n\to\R^m$ be a linear transformation.  By definition,
+					$T$ is \emph{linear} if 
+					\[
+						T(\vec u+\vec v)=T\vec u+T\vec v\qquad\text{and}\qquad
+						T(k\vec u)=kT\vec u
+					\]
+					for any $\vec u,\vec v\in \R^n$ and any scalar $k$.
+					By definition, the \emph{null space} of a linear transformation
+					$T:\R^n\to\R^m$ is the set $\Null(T)=\{\vec x\in\R^n:T\vec x=\vec 0\}$.
+					We will show $\Null(T)$ satisfies the two conditions of a subspace,
+					namely that it is closed under vector addition and scalar multiplication.
+
+					Pick $\vec u,\vec v\in \Null(T)$.  That means, $T\vec u=T\vec v=\vec 0$.
+					Now 
+					\[
+						T(\vec u+\vec v)=T\vec u+T\vec v=\vec 0+\vec 0=\vec 0,
+					\] with the first
+					equality following from the linearity of $T$.  We conclude $\vec u+\vec v\in\Null(T)$.
+
+					Further, we see that
+					\[
+						T(k\vec u)=kT\vec u=k\vec 0=\vec 0,
+					\]
+					again with the first equality following from linearity.  From this we may
+					conclude that $k\vec u\in \Null(T)$ for any scalar $k$, and so $\Null(T)$
+					is a subspace.
+				\end{quote}
+			\item Show that the range of $T$ is a subspace of $\R^m$.
+				\begin{quote}
+					By definition, the \emph{range} of a linear transformation
+					$T:\R^n\to \R^m$ is the set $\Range(T)=\{\vec x\in\R^m: \vec x=T\vec y\text{ for some }\vec y
+					\in \R^n\}$.
+
+					Proceeding in the standard way, pick $\vec x,\vec y\in \Range(T)$.  By definition,
+					this means there are vectors $\vec x',\vec y'\in \R^n$ such that $\vec x=T(\vec x')$ and
+					$\vec y=T(\vec y')$.
+
+					By linearity of $T$, we have
+					\[
+						T(\vec x'+\vec y') = T(\vec x')+T(\vec y') = \vec x+\vec y.
+					\]
+					Therefore $\vec x+\vec y\in \Range(T)$ since we have found a vector
+					$\vec w'=\vec x'+\vec y'$ so that $\vec x+\vec y=T(\vec w')$.
+
+					Similarly, linearity of $T$ gives us that
+					\[
+						T(k\vec x')=kT(\vec x')=k\vec x,
+					\]
+					and so $k\vec x\in \Range(T)$ because the vectors $\vec w'=k\vec x'$ satisfies
+					$k\vec x=T(\vec w')$.
+
+				\end{quote}
+		\end{enumerate}
+		
+		\item 
+		\begin{enumerate}
+			\item For a $4\times 3$ matrix $M$, must the column space of $M$ be identical to
+				the column space of $\mathrm{rref}(M)$?
+				\begin{quote}
+					For a $4\times 3$ matrix, the column space of $M$ and $\Rref(M)$ may be different.
+					By definition, the column space of a matrix is the span of the columns.  Consider the matrix
+					\[
+						M=\mat{0&0&0\\1&0&0\\0&0&0\\0&0&0}\qquad
+						\text{and}
+						\quad
+						\Rref(M)=\mat{1&0&0\\0&0&0\\0&0&0\\0&0&0}.
+					\]
+					Here we have the column space of $M$ is the span of $\mat{0\\1\\0\\0}$
+					but the column space of $\Rref(M)$ is the span of $\mat{1\\0\\0\\0}$,
+					which is a completely different subspace!
+				\end{quote}
+			\item For a $3\times 3$ matrix $N$ with $\Rank(N)=3$, must the column space of $N$
+				be identical to the column space of $\mathrm{rref}(N)$?  Can the assumption
+				that $\Rank(N)=3$ be dropped?
+				\begin{quote}
+					The \emph{rank} of a matrix $N$ is the number of ones in its reduced
+					row echelon form.  Equivalently, it is the number of linearly
+					independent columns of $N$.
+
+					Let $\vec c_1,\vec c_2,\vec c_3$ be the columns of $N$.  Since
+					$N$ has rank 3, $\mathcal C=\{\vec c_1,\vec c_2,\vec c_3\}$ is a linearly independent
+					set.  Since $N$ is a $3\times 3$ matrix, $\vec c_1,\vec c_2,\vec c_3\in \R^3$.
+					Therefore $\mathcal C$ is a basis for $\R^3$ and so the column space of $N$ is all of
+					$\R^3$.
+
+					Alternatively, since the rank of $N$ is 3 and $N$ is a $3\times 3$ matrix,
+					\[
+						\Rref(N) = \mat{1&0&0\\0&1&0\\0&0&1},
+					\]
+					and so the column space of $\Rref(N)$ is the span of the vectors
+					$\mat{1\\0\\0},\mat{0\\1\\0},\mat{0\\0\\1}$ and so is all of $\R^3$.  Thus, 
+					the column spaces of $N$ and $\Rref(N)$ must be the same.
+
+					The assumption that $\Rank(N)=3$ cannot be dropped.  If $\Rank(N)<3$, a counter-example
+					like that in part (a) could be constructed.
+				\end{quote}
+		\end{enumerate}
+		
+		\item For a linear transformation $L:\R^3\to\R^3$, we have the following information:
+			\[
+				L\mat{1\\1\\0}=\mat{2\\1\\1}\qquad
+				L\mat{-1\\1\\0}=\mat{-3\\3\\3}\qquad
+				L\mat{0\\0\\1}=\mat{0\\0\\0}.
+			\]
+		\begin{enumerate}
+			\item Write down a matrix for $L$.
+				\begin{quote}
+					$L:\R^3\to\R^3$ is a linear transformation, which by definition means 
+					$L(\vec u+\vec v)=L\vec u+L\vec v$ and $L(k\vec u)=kL\vec u$.  Since $L$ is
+					linear, we know that we can write down a matrix for $L$.
+
+					The easiest way to write down a matrix for $L$ is to computer
+					$L\vec e_1,L\vec e_2$, and $L\vec e_3$ which will give the first,
+					second, and third columns of a matrix for $L$.  We will use linearity
+					to our advantage.  
+
+					First, notice that 
+					\[
+						\vec e_1=\tfrac{1}{2}\mat{1\\1\\0}-\tfrac{1}{2}\mat{-1\\1\\0}\qquad
+						\vec e_2=\tfrac{1}{2}\mat{1\\1\\0}+\tfrac{1}{2}\mat{-1\\1\\0}\qquad
+						\vec e_3=\mat{0\\0\\1}.
+					\]
+					Using linearity, we now compute
+					\[
+						L\vec e_1 = L\left(\tfrac{1}{2}\mat{1\\1\\0}-\tfrac{1}{2}\mat{-1\\1\\0}\right)
+						=\tfrac{1}{2}L\mat{1\\1\\0}-\tfrac{1}{2}L\mat{-1\\1\\0}
+						=\tfrac{1}{2}\mat{2\\1\\1}-\tfrac{1}{2}\mat{-3\\3\\3}= \mat{\tfrac{5}{2}\\-1\\-1}
+					\]
+					\[
+						L\vec e_2 = L\left(\tfrac{1}{2}\mat{1\\1\\0}+\tfrac{1}{2}\mat{-1\\1\\0}\right)
+						=\tfrac{1}{2}L\mat{1\\1\\0}+\tfrac{1}{2}L\mat{-1\\1\\0}
+						=\tfrac{1}{2}\mat{2\\1\\1}+\tfrac{1}{2}\mat{-3\\3\\3}= \mat{-\tfrac{1}{2}\\2\\2}
+					\]
+					\[
+						L\vec e_3=\mat{0\\0\\0}.
+					\]
+					This means a matrix for $L$ is
+					\[
+						\mat{\tfrac{5}{2}&-\tfrac{1}{2}&0\\-1&2&0\\-1&2&0}.
+					\]
+				\end{quote}
+			\item Describe the range of $L$ as a point, line, plane, or hyperplane and
+				give a basis for the range of $L$.
+				\begin{quote}
+					From part (a), we can see that the rank of $L$ is 2. Therefore, the range
+					of $L$ will be a two dimensional subspace, making it a plane.
+				\end{quote}
+			\item Describe the null space of $L$ as a point, line, plane, or hyperplane and
+				give a basis for the null space of $L$.
+				\begin{quote}
+					The \emph{rank-nullity} theorem states that $\Rank(L)+\Nullity(L)=\#$ of columns in a
+					matrix representation of $L$, or equivalently, the dimension of the target space. 
+					In this case, the target space is
+					$\R^3$.  Thus $\Rank(L)+\Nullity(L)=3$.  Since $\Rank(L)=2$, we know
+					$\Nullity(L)=1$ and so the dimension of the null space of $L$ is 1, making it a line.
+				\end{quote}
+		\end{enumerate}
+
+	\end{enumerate}
+\end{document}
