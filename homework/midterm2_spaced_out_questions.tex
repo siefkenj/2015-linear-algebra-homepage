@@ -1,0 +1,187 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+
+
+% In case you need to adjust margins:
+\topmargin=-0.45in      %
+\evensidemargin=0in     %
+\oddsidemargin=0in      %
+\textwidth=6.5in        %
+\textheight=10.0in       %
+	\headsep=0.25in         %
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+
+\begin{document}
+	
+	{\huge \bf Midterm 2} 
+	
+	\vspace{2em}
+	{\huge MATH 211 (A01), Spring 2015 (Siefken)}
+	
+	\vspace{2em}
+ 	{
+	\hfill \bf Date: \underline{\hspace{6em}}
+	\vspace{.5em}
+
+	\hfill Name: \underline{\hspace{16em}}
+	\vspace{.5em}
+
+	\hfill ID Number: \underline{\hspace{16em}}
+	
+	}
+
+	\vspace{2in}
+	This is a 50 minute test. It has 6 pages including this cover page.
+	\begin{center}
+	\begin{tabular}{|l|c|r|}
+	\hline
+	Q1 & $\phantom{abcd}$ & /10\\
+	\hline
+	Q2 & & /10\\
+	\hline
+	Q3 & & /10\\
+	\hline
+	Q4 & & /10\\
+	\hline
+	Q5 & & /10\\
+	\hline
+	\hline
+	Total & & /50\\
+	\hline
+	\end{tabular}
+	\end{center}
+	\clearpage
+
+\begin{enumerate}
+	\item[1 (10pts)] Complete each of the following sentences with a mathematically precise definition.
+	\begin{enumerate}
+		\item[(a) (2pts)] A non-empty subset $V\subseteq \R^n$ is a {\bf subspace} if
+		\vspace{1.5in}
+		\item[(b) (2pts)] A function $T:\R^n\to\R^m$ is a {\bf linear transformation} if
+		\vspace{1.5in}
+		\item[(c) (2pts)] The {\bf null space} of a matrix $M$ is
+		\vspace{1.5in}
+		\item[(d) (2pts)] The {\bf inverse} of a matrix $A$ is \\ {\it(Hint: you will get no points if all you write is $A^{-1}$)}
+		\vspace{1.5in}
+		\item[(e) (2pts)] The {\bf range} (or {\bf image}) of a linear transformation $T:\R^n\to\R^m$ is
+		\vspace{1in}
+		
+	
+		%\item[(c) (6pts)] $\mathbf u$ and $\mathbf v$ are unit vectors and $\mathbf u\cdot \mathbf v = .765$.
+		%Are $\mathbf u$ and $\mathbf v$ linearly indepenendent or linearly dependent.  {\bf Explain your answer.}
+		%\item[(c) (6pts)] In 3d graphics, a triangle is defined by 3 points and a normal vector.  In order to save computational
+		%time, a triangle is only displayed if the normal vector is pointing towards the viewer (and the triangle is in
+		%front of the viewer).
+		%
+		%If you are positioned at the origin looking in the $[1\ 2\ 3]$ direction, should a triangle with
+		%center $[30\ 60\ 20]$ and normal vector $[-2\ 2\ -1]$ be displayed?
+		\vspace{5in}
+	\end{enumerate}
+	\clearpage
+
+	\item[2 (10pts)] Given
+		\[
+			A=\mat{1&1\\2&3}\qquad
+			B=\mat{-1&1\\1&-1}\qquad
+			C=\mat{1&2&-1\\2&2&4\\1&3&-3}\qquad
+			C^{-1}=\mat{9&-3/2&-5\\-5&1&3\\-2&1/2&1}
+		\]
+	\begin{enumerate}
+		\item[(a) (2pts)] Compute $AB$.
+			\vspace{1.5in}
+		\item[(b) (2pts)] Compute $A^{-1}$.
+			\vspace{2.5in}
+		\item[(c) (2pts)] Compute $C^T$.
+			\vspace{1.5in}
+		\item[(d) (4pts)] Solve the equation $C\vec x=\mat{1\\0\\1}$.
+			\vspace{1in}
+		
+	
+	\end{enumerate}
+	\clearpage
+	
+\item[3 (10pts)] For each of the following, indicate {\bf true} or {\bf false}.  You {\it do not}
+	need to explain how you arrived at your answer.
+	\begin{enumerate}
+		%\item[(a) (3pts)] Let $M$ be an $n\times n$ matrix.  If $M\neq 0$, then we could have
+		%	\begin{enumerate}[(i)]
+		%		\item $\mathrm{row}(M)=\{\vec 0\}$
+		%		\vspace{.65in}
+		%		\item $\mathrm{col}(M)=\{\vec 0\}$
+		%		\vspace{.65in}
+		%		\item $\mathrm{null}(M)=\{\vec 0\}$ 
+		%		\vspace{.65in}
+		%	\end{enumerate}
+		%\item[(b) (7pts)] Let $M$ be an $n\times n$ matrix.  If $M$ is invertible, then we could have
+		\item[] Let $M$ be an $n\times n$ matrix.  If $M$ is invertible, then we \emph{must} have
+			\begin{enumerate}[(i)]
+				\item $\mathrm{row}(M)=\{\vec 0\}$
+				\vspace{.65in}
+				\item $\mathrm{col}(M)=\R^n$
+				\vspace{.65in}
+				\item $\mathrm{null}(M)=\{\vec 0\}$ 
+				\vspace{.65in}
+				%\item $M=E_1E_2E_3$ for elementary matrices $E_1$, $E_2$, $E_3$.
+				%\vspace{.65in}
+				%\item $\mathrm{rref}(M)=\mat{1&0&0\\0&1&0\\0&0&0}$
+				%\vspace{.65in}
+				\item $\mathrm{rank}(M)=n$
+				\vspace{.65in}
+				\item $M=M^T$ 
+			\end{enumerate}
+	\end{enumerate}
+	\pagebreak
+
+
+	\item[4 (10pts)] Let $\mathcal F:\R^2\to\R^2$ be the linear transformation that reflects
+		vectors across the line with direction vector $\vec e_2$.  
+		%Let $\mathcal R:\R^2\to\R^2$
+		%be a counter-clockwise rotation by $45^\circ$.  
+		Let $\mathcal P:\R^2\to\R^2$ be projection
+		onto the vector $\mat{1\\2}$.
+	\begin{enumerate}
+		\item[(a) (4pt)] Compute $\mathcal F\mat{7\\-3}$ and $\mathcal P\mat{1\\0}$.
+
+		\vspace{1in}
+
+		\item[(b) (6pts)] Find a matrix for $\mathcal F\circ \mathcal P$.
+			\vspace{5in}
+		%\item[(c) (2pts)] Is $\mathcal F\circ \mathcal P$ invertible?  Explain.
+		%	\vspace{1in}
+		%\item[(d) (2pts)] Is $\mathcal F\circ \mathcal R$ invertible?  Explain.
+		%	\vspace{1in}
+	\end{enumerate}
+	\clearpage
+
+	\item[5 (10pts)] For each of the following transformations, either prove that the transformation is linear
+		or provide an example that shows it is not linear.
+	\begin{enumerate}
+		\item[(a) (5pts)] $U:\R^2\to\R^2$ defined by
+			$U\mat{x\\y}=\mat{x\\x+y}$.
+		\vspace{5in}
+		\item[(b) (5pts)] $V:\R^2\to\R^2$ defined by 
+			$V\mat{x\\y}=\mat{x\\x-1}$.
+	\end{enumerate}
+	\clearpage
+
+
+\end{enumerate}
+\end{document}
+
