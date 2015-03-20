@@ -1,0 +1,229 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{tikz}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+\expandafter\def\expandafter\quote\expandafter{\quote\sf\color{DarkGreen}}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} %({\small \it \today})
+	}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\Det}{\mathrm{det}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 211 (A01)}{Written Homework 4}{Due Friday, March 20}{}{}{}
+
+	\begin{enumerate}
+		\item Suppose the matrix equation $A\vec x=\mat{3\\2\\7}$ has the general solution
+			\[
+				\vec x=\mat{1\\0\\0}+s\mat{1\\1\\0}+t\mat{-1\\0\\1}.
+			\]
+			\begin{enumerate}
+				\item How many rows and how many columns does $A$ have?
+					\begin{quote}
+						$A$ has $3$ columns because the general solution we are given
+						is a subset of $\R^3$, and $A$ has 3 rows because $A\vec x\in\R^3$.
+					\end{quote}
+				\item Find $\Null(A)$.
+					\begin{quote}
+						The general solution to a matrix equation $A\vec x=\vec b$ takes the form
+						of $\vec p+N$ where $N$ is the null space of $A$.  Thus, 
+						\[
+							\Null(A)=\Span\left\{\mat{1\\1\\0},\mat{-1\\0\\1}\right\}.
+						\]
+					\end{quote}
+				\item Find $\Rank(A)$.
+					\begin{quote}
+						Since the null space of $A$ has dimension $2$ and $A$ is a 
+						$3\times 3$ matrix, 
+						by the rank-nullity theorem, the
+						rank of $A$ must be $1$.
+					\end{quote}
+				\item Find $\text{col}(A)$.
+					\begin{quote}
+						The column space of $A$ is the same as the range of $A$.  Since
+						the rank of $A$ is 1, the range of $A$ must be a one dimensional subspace,
+						and in particular, 
+						\[
+							\mat{3\\2\\7}\in\mathrm{range}(A).
+						\]
+						Thus 
+						\[
+							\mathrm{col}(A)=\Span\left\{\mat{3\\2\\7}\right\}.
+						\]
+					\end{quote}
+				\item Find $\text{row}(A)$.
+					\begin{quote}
+						The row space of $A$ is orthogonal to the null space of $A$ and by the
+						rank-nullity theorem, the row space of $A$ must be dimension 1.  By inspection
+						we find that the vector $\vec v=\mat{1\\-1\\1}$ is orthogonal to all vectors
+						in $\Null(A)$, and so $\vec v\in\mathrm{row}(A)$.  
+						We conclude
+						\[
+							\mathrm{row}(A)=\Span\{\vec v\}.
+						\]
+					\end{quote}
+			\end{enumerate}
+		
+		\item Let
+			\[
+				\vec b_1=\mat{1\\1\\1}\qquad\vec b_2=\mat{1\\-1\\0}\qquad
+				\vec b_3=\mat{-1\\0\\1}\qquad \vec c=\mat{1\\2\\3}
+			\]
+			and let $\mathcal B=\{\vec b_1,\vec b_2,\vec b_3\}$ and $\mathcal S=\{\vec e_1,\vec e_2,\vec e_3\}$.
+			Suppose $T:\R^3\to\R^3$ is a linear transformation and $T(\vec b_1)=2\vec b_1$, 
+			$T(\vec b_2)=3\vec b_2$, and $T(\vec b_3)=-\vec b_3$.
+			\begin{enumerate}
+				\item Compute $[\vec c]_{\mathcal B}$.
+					\begin{quote}
+						Let $X=[\vec b_1|\vec b_2|\vec b_3]$.  Computing we see
+						\[
+							X^{-1} = \frac{1}{3}\mat{1&1&1\\1&-2&1\\-1&-1&2}.
+						\]
+						Interpreted as a change of basis, $X$ converts from the $\mathcal B$
+						basis
+						to the $\mathcal S$ basis and $X^{-1}$ converts from the $\mathcal S$
+						basis to the $\mathcal B$ basis.
+
+						Thus, we can express $\vec c$ in the $\mathcal B$ basis by computing 
+						\[
+							X^{-1}[\vec c]_{\mathcal S}=\mat{2\\0\\1},
+						\]
+						and so
+						\[
+							[\vec c]_{\mathcal B} = \mat{2\\0\\1}_{\mathcal B}.
+						\]
+					\end{quote}
+				\item Compute $[T\vec c]_{\mathcal B}$ and $[T\vec c]_{\mathcal S}$.
+					\begin{quote}
+						We have already computed that $\vec c=2\vec b_1+\vec b_3$ and so
+						$T\vec c=T(2\vec b_1+\vec b_3) = 2T\vec b_1+T\vec b_3 = 4\vec b_1-\vec b_3$.
+						Thus, we see
+						\[
+							[T\vec c]_{\mathcal B} = \mat{4\\0\\-1}_{\mathcal B},
+						\]
+						and 
+						\[
+							[T\vec c]_{\mathcal S} = 4[\vec b_1]_{\mathcal S}-[\vec b_3]_{\mathcal S}
+							= \mat{4\\4\\4}-\mat{1\\0\\-1} = \mat{3\\4\\5}.
+						\]
+					\end{quote}
+				\item Find a matrix for $T$ in the $\mathcal B$ basis (i.e., 
+					the matrix $[T]_{\mathcal B}$) and a matrix for $T$ in
+					the $\mathcal S$ basis (i.e., $[T]_{\mathcal S}$).
+					\begin{quote}
+						We know $T\vec b_1=2\vec b_1$, $T\vec b_2=3\vec b_2$, and $T\vec b_3=-\vec b_3$,
+						and so in the $\mathcal B$ basis, $T$ acts like a diagonal matrix.
+						From this, we produce the matrix
+						\[
+							[T]_{\mathcal B} = \mat{2&0&0\\0&3&0\\0&0&-1}_{\mathcal B}.
+						\]
+						Since we have already written $[T]_\mathcal B$, if we want to find $[T]_{\mathcal S}$,
+						we may use the matrix $X^{-1}$ to first convert vectors from the $\mathcal S$ basis
+						to the $\mathcal B$ basis, then use $[T]_{\mathcal B}$ to apply the transformation $T$,
+						then use $X$ to convert back from the $\mathcal B$ basis to the $\mathcal S$ basis.
+						
+						Following this procedure, we get
+						\[
+							[T]_{\mathcal S} = X[T]_{\mathcal B}X^{-1} = \frac{1}{3}\mat{4&-5&7\\-1&8&-1\\3&3&0}.
+						\]
+					\end{quote}
+			\end{enumerate}
+		
+		\item Let $A=\mat{1&2&1\\1&1&1\\1&0&0}$ and $B=\mat{1&2&1\\1&1&1\\1&0&x}$.
+		\begin{enumerate}
+			\item Compute $\Det(A)$.
+					\begin{quote}
+						Using the cofactor expansion on the bottom row of $A$, we see
+						\[
+							\Det(A) = \Det\mat{2&1\\1&1}-0\,\Det\mat{1&1\\1&1}+0\,\Det\mat{1&2\\1&1} = 
+							1.
+						\]
+					\end{quote}
+			\item Compute $\Det(B)$.  For what values of $x$ is $B$ not invertible?
+					\begin{quote}
+						Using the cofactor expansion on the bottom row of $B$, we see
+						\[
+							\Det(B) = \Det\mat{2&1\\1&1}-0\,\Det\mat{1&1\\1&1}+x\,\Det\mat{1&2\\1&1} = 
+							1-x.
+						\]
+						We conclude that when $x=1$, $B$ is not invertible.
+					\end{quote}
+		\end{enumerate}
+
+		\item Let $A=\mat{1&2\\5&9}$.
+		\begin{enumerate}
+			\item Find an equation for the function $p(x)=\Det(A-xI)$ (this is called the
+				\emph{characteristic polynomial} of $A$).
+					\begin{quote}
+						\[
+							p(x)\Det(A-xI) = \Det\left(\mat{1&2\\5&9}-\mat{x&0\\0&x}\right)
+							=\Det\mat{1-x&2\\5&9-x}
+						\]\[
+							=(1-x)(9-x)-10=x^2-10x-1
+						\]
+					\end{quote}
+			\item For what values of $x$ is $A-xI$ non-invertible?
+					\begin{quote}
+						By using the quadratic formula, $p(x)=0$ when 
+						$x=5\pm\sqrt{26}$.
+					\end{quote}
+			\item Compute $p(A)$, the polynomial $p$ with the matrix $A$ plugged into it.  When you plug a matrix
+				into a polynomial, replace any constant terms $k$ with the matrix $kI$.
+				Can you guess
+				why $p$ is called an \emph{annihilating} polynomial for $A$?
+					\begin{quote}
+						\[
+							p(A) = A^2-10A-I=
+							\mat{1&2\\9&5}^2-10\mat{1&2\\5&9}-\mat{1&0\\0&1}
+						\]\[
+							=\mat{11&20\\50&91} - \mat{10&20\\50&90}-\mat{1&0\\0&1}
+							=\mat{0&0\\0&0}.
+						\]
+						$p$ is called an annihilating polynomial for $A$ because $p(A)$ is the zero matrix!
+					\end{quote}
+		\end{enumerate}
+
+	\end{enumerate}
+\end{document}
